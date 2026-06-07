@@ -28,7 +28,7 @@ jobs:
       - name: Docker Build and push
         run: |
           docker build -t yugsaini/chaicode-node .
-          docker push docker yugsaini/chaicode-node
+          docker push yugsaini/chaicode-node
 
       - name: Deploy on ExCloud
         uses: appleboy/ssh-action@v1.0.3

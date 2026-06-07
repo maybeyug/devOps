@@ -37,9 +37,21 @@ jobs:
           username: ubuntu
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            cd /home/ubuntu/devOps
-            git pull
-            npm install
-            pm2 restart 0
+            # export NVM_DIR="$HOME/.nvm"
+            # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            # cd /home/ubuntu/devOps
+            # git pull
+            # npm install
+            # pm2 restart 0
+
+            # Kill the existing docker container
+            docker rm -f chaicode-node || true
+
+            # Again pull the fresh image from Hub
+            docker pull yugsaini/chaicode-node
+
+            # Run docker run -d -p 
+            docker run -d --name chaicode-node --restart unless-stopped -p 8000:8000 yugsaini/chaicode-node
+
+            # Clean up old/saved images
+            docker image prune -f

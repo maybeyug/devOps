@@ -45,13 +45,13 @@ jobs:
             # pm2 restart 0
 
             # Kill the existing docker container
-            docker rm -f chaicode-node || true
+            sudo docker rm -f chaicode-node || true
 
             # Again pull the fresh image from Hub
-            docker pull yugsaini/chaicode-node
+            sudo docker pull yugsaini/chaicode-node
 
             # Run docker run -d -p 
-            docker run -d --name chaicode-node --restart unless-stopped -p 8000:8000 yugsaini/chaicode-node
+            sudo docker run -d --name chaicode-node --restart unless-stopped -p 8000:8000 yugsaini/chaicode-node
 
             # Clean up old/saved images
-            docker image prune -f
+            sudo docker image prune -f

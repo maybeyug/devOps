@@ -8,7 +8,8 @@ app.get('/',(req,res)=>{
     return res.json({
         message:"Server is healthy v5.1 ❤️",
         status: "Github Actions Hurarayyyy!!",
-        notify:"Adding ssl"
+        notify:"Adding ssl",
+        next:"what next"
     })
 })
 

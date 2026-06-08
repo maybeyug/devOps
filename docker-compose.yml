@@ -1,0 +1,25 @@
+services:
+  nodejs-server:
+    image: yugsaini/chaicode-node
+    deploy:
+      replicas: 5
+    networks:
+      - chaicode-internal
+  caddy:
+    image: caddy:latest
+    ports:
+      - '80:80'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    networks:
+      - chaicode-internal
+
+#creating network of chaicode internal: bcoz we'll not expose these container publically, they will always remain private  
+
+# Port map caddy to : 80 and caddy will take care to reverse proxy on :8000 of each container
+
+# As they(all containers) are in same network we dont need to do port mapping, you can go inside a container by its name not by port map
+
+networks:
+  chaicode-internal:
+    driver: brdige

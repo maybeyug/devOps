@@ -1,6 +1,6 @@
 :80 {
     handle {
-        reverse_proxy nodejs-server:8080 {
+        reverse_proxy nodejs-server:8000 {
             header_up Host {host}
             header_up X-Real-IP {remote}
             header_up X-Forwarded-For {remote}
@@ -8,3 +8,21 @@
         }
     }
 }
+
+// doing reverse proxy on my nodejs-server and on port 8000
+// nodejs-server is the name we give to our container which are in networks
+
+
+// Adding the ssl certificates from caddy
+// ex.meowcat.online{
+//     tls meow@meowcat.online
+
+//     handle {
+//         reverse_proxy nodejs-server:8000 {
+//             header_up Host {host}
+//             header_up X-Real-IP {remote}
+//             header_up X-Forwarded-For {remote}
+//             header_up X-Forwarded-Proto {scheme}
+//         }
+//     }
+// }
